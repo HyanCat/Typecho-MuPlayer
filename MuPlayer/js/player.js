@@ -1,14 +1,13 @@
 jQuery(function() {
     var player = new _mu.Player({
         mode: 'loop',
-        baseDir: './',
         engines: [{
-            constructor: 'AudioCore'
-        }, {
             constructor: 'FlashMP3Core',
             args: {
-                swf: '../lib/muplayer/muplayer_mp3.swf'
+                swf: 'usr/plugins/MuPlayer/lib/muplayer/muplayer_mp3.swf'
             }
+        }, {
+            constructor: 'AudioCore'
         }]
     }),
         $pl = $('#playlist'),

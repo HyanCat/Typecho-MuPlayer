@@ -113,9 +113,7 @@ class MuPlayer_Plugin implements Typecho_Plugin_Interface
     {
         $options = Typecho_Widget::widget('Widget_Options');
         $songs = self::songs();
-        echo '<link rel="stylesheet" type="text/css" media="all" href="';
-        $options->pluginUrl("MuPlayer/css/player.css");
-        echo '" />';
+        
         echo "<ul id=\"playlist\" class=\"playlist\">";
         foreach ($songs as $song) {
             echo "<li data-link=" . $song['url'] . "><i class=\"play-btn\"></i>" . $song['title'] . "</li>";

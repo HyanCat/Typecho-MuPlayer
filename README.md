@@ -23,6 +23,4 @@ version: 0.9.0
 
  		MuPlayer_Plugin::player();
 
-4. 注意：需要复制dist目录至博客根目录。这可能是muplayer的一个bug，swf指定目录失效，后续版本应该会改进。
-
-
+注：目前仅限定允许在首页调用。后续扩展。
