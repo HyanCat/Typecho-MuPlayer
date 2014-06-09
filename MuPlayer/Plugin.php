@@ -4,7 +4,7 @@
 * @package BaiduMuPlayer
 * @author HyanCat <hyancat@live.cn>
 * @link http://hyancat.com 流光不加少个人主页
-* @version 0.0.2
+* @version 0.0.3
 */
 class MuPlayer_Plugin implements Typecho_Plugin_Interface
 {
