@@ -1,10 +1,10 @@
 <?php
 /**
-* 基于 Baidu MuPlayer typecho 插件
+* 基于 Baidu MuPlayer Typecho 插件
 * @package BaiduMuPlayer
 * @author HyanCat <hyancat@live.cn>
 * @link http://hyancat.com 流光不加少个人主页
-* @version 0.0.1
+* @version 0.0.2
 */
 class MuPlayer_Plugin implements Typecho_Plugin_Interface
 {
@@ -17,8 +17,11 @@ class MuPlayer_Plugin implements Typecho_Plugin_Interface
     */
     public static function activate()
     {
+        Typecho_Plugin::factory('Widget_Archive')->header = array('MuPlayer_Plugin', 'addHeader');
+        Typecho_Plugin::factory('Widget_Archive')->footer = array('MuPlayer_Plugin', 'addFooter');
         return "BaiduMuPlayer插件成功启用，请在设置里添加歌曲";
     }
+
     /**
     * 禁用插件方法,如果禁用失败,直接抛出异常
     *
@@ -49,6 +52,7 @@ class MuPlayer_Plugin implements Typecho_Plugin_Interface
                 </p>'));
         $form->addInput($addsong);
     }
+
     /**
     * 个人用户的配置面板
     *
@@ -58,6 +62,28 @@ class MuPlayer_Plugin implements Typecho_Plugin_Interface
     */
     public static function personalConfig(Typecho_Widget_Helper_Form $form){}
     
+
+    /**
+     * header中添加引入的css
+     */
+    public static function addHeader()
+    {
+        // if (Typecho_Widget::widget('Widget_Archive')->is('index')) {
+            echo '<link rel="stylesheet" type="text/css" href="' . Helper::options()->pluginUrl . '/MuPlayer/css/player.css" />' . "\n";
+        // }
+    }
+
+    /**
+     * footer中添加引入的js
+     */
+    public static function addFooter()
+    {
+        // if (Typecho_Widget::widget('Widget_Archive')->is('index')) {
+            echo '<script type="text/javascript" src="' . Helper::options()->pluginUrl . '/MuPlayer/lib/muplayer/player.min.js' . '"></script>' . "\n";
+            echo '<script type="text/javascript" src="' . Helper::options()->pluginUrl . '/MuPlayer/js/player.js' . '"></script>' . "\n";
+        // }
+    }
+
     /**
     * 解析数据
     * @return array
@@ -97,18 +123,4 @@ class MuPlayer_Plugin implements Typecho_Plugin_Interface
         echo "</ul>";
     }
 
-    /**
-     * 页面引入相关js（需要页面事先引入jquery）
-     * @return [type] [description]
-     */
-    public static function script()
-    {
-        $options = Typecho_Widget::widget('Widget_Options');
-        echo '<script type="text/javascript" src="';
-        $options->pluginUrl("MuPlayer/lib/muplayer/player.js");
-        echo '"></script>';
-        echo '<script type="text/javascript" src="';
-        $options->pluginUrl("MuPlayer/js/player.js");
-        echo '"></script>';
-    }
 }
